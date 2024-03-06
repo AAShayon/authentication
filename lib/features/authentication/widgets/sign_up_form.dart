@@ -2,11 +2,6 @@ import 'package:excel_hrm/utils/constants/colors.dart';
 import 'package:excel_hrm/utils/constants/sizes.dart';
 import 'package:excel_hrm/utils/constants/text_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-// import 'package:hm_e_commerce/features/authentication/screens/signup/varify_email_screen.dart';
-// import 'package:hm_e_commerce/utils/constants/colors.dart';
-// import 'package:hm_e_commerce/utils/constants/sizes.dart';
-// import 'package:hm_e_commerce/utils/constants/text_strings.dart';
 import 'package:iconsax/iconsax.dart';
 
 class HMSignUpForm extends StatelessWidget {
@@ -112,8 +107,6 @@ class HMSignUpForm extends StatelessWidget {
                     ),
                     TextSpan(
                       text: '${HMTexts.privacyPolicy} ', style: Theme.of(context).textTheme.bodyMedium!.apply(
-                        // color:  dark ? HMColors.white :  HMColors.primary,
-                       // color:  HMColors.white,
                         decoration: TextDecoration.underline,
                        // decorationColor: dark ? HMColors.white : HMColors.primary
                     ),
@@ -122,7 +115,7 @@ class HMSignUpForm extends StatelessWidget {
                         text: '${HMTexts.and} ' ,style: Theme.of(context).textTheme.bodySmall
                     ),
                     TextSpan(
-                      text: '${HMTexts.termOfuse}', style: Theme.of(context).textTheme.bodyMedium!.apply(
+                      text: HMTexts.termOfuse, style: Theme.of(context).textTheme.bodyMedium!.apply(
                         color:  HMColors.primary,
                         // color:  dark ? HMColors.white :  HMColors.primary,
                         decoration: TextDecoration.underline,

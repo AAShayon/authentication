@@ -3,15 +3,6 @@ import 'package:excel_hrm/features/home/screens/home_screen.dart';
 import 'package:excel_hrm/utils/constants/sizes.dart';
 import 'package:excel_hrm/utils/constants/text_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-// import 'package:get/get_core/src/get_main.dart';
-// import 'package:get/get_navigation/get_navigation.dart';
-// import 'package:hm_e_commerce/features/authentication/screens/password_configuration/forget_password.dart';
-// import 'package:hm_e_commerce/features/authentication/screens/signup/sign_up_page.dart';
-// import 'package:hm_e_commerce/navigation%20_menu.dart';
-// import 'package:hm_e_commerce/utils/constants/sizes.dart';
-// import 'package:hm_e_commerce/utils/constants/text_strings.dart';
 import 'package:iconsax/iconsax.dart';
 
 class SignInForm extends StatelessWidget {
@@ -37,16 +28,6 @@ class SignInForm extends StatelessWidget {
             const SizedBox(
               height: HMSizes.spaceBtwInputFields,
             ),
-
-            // Password
-
-            TextFormField(
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Iconsax.password_check),
-                labelText: HMTexts.password,
-                suffixIcon: Icon(Iconsax.eye_slash),
-              ),
-            ),
             const SizedBox(
               height: HMSizes.spaceBtwInputFields / 2,
             ),
@@ -66,8 +47,7 @@ class SignInForm extends StatelessWidget {
                 ///Forget Password
                 TextButton(
                     onPressed: (){},
-                    //     () => Get.to(() => ForgetPassword();
-                    // ),
+
                     child: const Text(HMTexts.forgetPassword)),
               ],
             ),
@@ -80,11 +60,8 @@ class SignInForm extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=> HomeScreen()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const HomeScreen()));
                 },
-                // {
-                //   Get.to(() => const NavigationMenu());
-                // },
                 child: const Text(HMTexts.signIn),
               ),
             ),
@@ -97,8 +74,7 @@ class SignInForm extends StatelessWidget {
               child: OutlinedButton(
                 onPressed: ()
                 {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=> SignUpScreen()));
-                  // Get.to(() => const SignUpScreen());
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const SignUpScreen()));
                 },
                 child: const Text(HMTexts.createAccount),
               ),
