@@ -6,6 +6,16 @@ class HMImages {
     static const String darkApplogo="assets/logos/s-Splash-dark.png";
     static const String lightApplogo="assets/logos/s-Splash-light.png";
   ///---Social logos
+  static const String employees="assets/homepage_icons/employee.png";
+  static const String payroll="assets/homepage_icons/payroll.png";
+  static const String timeSheet="assets/homepage_icons/timesheet.png";
+  static const String account="assets/homepage_icons/accounts.png";
+  static const String training="assets/homepage_icons/training.png";
+  static const String recruitment="assets/homepage_icons/recruitment.png";
+  static const String ticket="assets/homepage_icons/ticket.png";
+  static const String event="assets/homepage_icons/event.png";
+  static const String document="assets/homepage_icons/document.png";
+  static const String report="assets/homepage_icons/report.png";
   //   static const google="assets/logos/google-icon.png";
   //   static const facebook="assets/logos/facebook-icon.png";
   //
