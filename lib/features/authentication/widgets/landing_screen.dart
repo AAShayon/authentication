@@ -1,9 +1,10 @@
+import 'package:excel_hrm/features/home/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:excel_hrm/features/authentication/data/image_title.dart';
 
-class SignInHomepage extends StatelessWidget {
-  const SignInHomepage({Key? key}) : super(key: key);
+class LandingScreen extends StatelessWidget {
+  const LandingScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,16 +27,15 @@ class SignInHomepage extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: 20,),
-                Center(child: Text('Excell HRM',style: Theme.of(context).textTheme.headlineLarge!.copyWith(color: Colors.black),)),
-                SizedBox(height: 20,),
+                const SizedBox(height: 20,),
+                Center(child: Text('Excell HRM',style: Theme.of(context).textTheme.headlineLarge!.copyWith(color: Colors.white),)),
+                const SizedBox(height: 20,),
                 Container(
                   width: 360,
-                  // Adjusted the height to fit the available space
-                  height: 760,
+                  // height: 760,
                   child: GridView.builder(
                     shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
+                    physics: const NeverScrollableScrollPhysics(),
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       mainAxisExtent: 155,
@@ -70,6 +70,7 @@ class SignInHomepage extends StatelessWidget {
                     itemCount: imageTitleList.length,
                   ),
                 ),
+                TextButton(onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=> const HomeScreen())), child: const Text('Login'))
               ],
             ),
           ),

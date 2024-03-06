@@ -1,4 +1,4 @@
-import 'package:excel_hrm/features/authentication/widgets/sign_in_homepage.dart';
+import 'package:excel_hrm/features/authentication/widgets/landing_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'features/home/screens/home_screen.dart';
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: HomeScreen(),
-      home: const SignInHomepage(),
+      home: const LandingScreen(),
     );
   }
 }
