@@ -32,7 +32,6 @@ class SignInForm extends StatelessWidget {
               height: HMSizes.spaceBtwInputFields / 2,
             ),
 
-            /// Remember Me & Forget Password
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
