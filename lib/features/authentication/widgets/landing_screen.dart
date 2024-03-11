@@ -1,7 +1,7 @@
 import 'package:excel_hrm/features/home/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:excel_hrm/features/authentication/data/image_title.dart';
+import 'package:excel_hrm/features/authentication/data/page_data/image_title.dart';
 
 class LandingScreen extends StatelessWidget {
   const LandingScreen({Key? key}) : super(key: key);
