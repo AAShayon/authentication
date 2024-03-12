@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:excel_hrm/features/authentication/provider/auth_provider.dart';
 import 'package:excel_hrm/features/authentication/screens/sign_up_screen.dart';
 import 'package:excel_hrm/features/home/screens/home_screen.dart';
@@ -20,8 +22,8 @@ class _SignInFormState extends State<SignInForm> {
   bool _isAnimated = false;
   bool _splashTextVisible = true;
 
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   String splashText =
       '''We make things you need arrive on time. You focus on what you need to do''';
 
@@ -39,22 +41,21 @@ class _SignInFormState extends State<SignInForm> {
   /// For Login Rider
   void loginUser() async {
     if (formKey.currentState!.validate()) {
-      String _email = emailController.text.toString();
-      String _password = passwordController.text.toString();
+      String _email = _emailController.text.trim();
+      String _password = _passwordController.text.trim();
 
       if (_email.isEmpty) {
         showErrorSnackBar('Please enter an email');
       } else if (_password.isEmpty) {
         showErrorSnackBar('Please enter a password');
       } else {
-        // Use AuthProvider to handle login
         final authProvider = Provider.of<AuthProvider>(context, listen: false);
         await authProvider.login(context, _email, _password  ).then((value) {
-          print(": $value");
+          log("value check : $value");
           if (value==true)
          //
           {
-            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomeScreen()));
+           return Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomeScreen()));
 
           } else {
 
@@ -99,7 +100,7 @@ class _SignInFormState extends State<SignInForm> {
           children: [
             // Email
             TextFormField(
-              controller: emailController,
+              controller: _emailController,
               decoration: const InputDecoration(
                 prefixIcon: Icon(Iconsax.direct_right),
                 labelText: HMTexts.email,
@@ -110,7 +111,7 @@ class _SignInFormState extends State<SignInForm> {
               height: HMSizes.spaceBtwInputFields,
             ),
             TextFormField(
-              controller: passwordController,
+              controller: _passwordController,
               obscureText: _obscureText,
               decoration: InputDecoration(
                 prefixIcon: const Icon(Iconsax.direct_right),

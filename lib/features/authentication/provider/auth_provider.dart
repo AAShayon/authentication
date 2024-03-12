@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:excel_hrm/features/authentication/data/model/base/api_response.dart';
 import 'package:excel_hrm/features/authentication/data/model/base/error_response.dart';
 import 'package:excel_hrm/features/authentication/data/repository/auth_repo.dart';
@@ -31,11 +33,11 @@ class AuthProvider with ChangeNotifier {
         notifyListeners();
         message = map["message"];
         if (kDebugMode) {
-          print("--------------message----------------------->>>>>$message");
+          log("--------------message----------------------->>>>>$message");
         }
         token = map["token_info"]["access_token"];
         if (kDebugMode) {
-          print("--------------token----------------------->>>>>" + token);
+          log("--------------token----------------------->>>>>" + token);
         }
 
         ScaffoldMessenger.of(context).removeCurrentSnackBar();
@@ -45,9 +47,11 @@ class AuthProvider with ChangeNotifier {
           duration: Duration(seconds: 2),
           backgroundColor: Theme.of(context).primaryColor,
         ));
+        return true;
 
       }catch(e){
-
+        log(e.toString());
+        return false;
       }
 
       // callback(true, token, temporaryToken, message);
@@ -55,7 +59,7 @@ class AuthProvider with ChangeNotifier {
     } else {
       String errorMessage;
       if (apiResponse.error is String) {
-        print(apiResponse.error.toString());
+        log(apiResponse.error.toString());
         errorMessage = apiResponse.error.toString();
 
         ScaffoldMessenger.of(context).removeCurrentSnackBar();
@@ -66,7 +70,7 @@ class AuthProvider with ChangeNotifier {
 
       } else {
         ErrorResponse errorResponse = apiResponse.error;
-        print(errorResponse.error![0].message);
+        log(errorResponse.error![0].message);
         errorMessage = errorResponse.error![0].message;
 
         ScaffoldMessenger.of(context).removeCurrentSnackBar();
@@ -78,13 +82,14 @@ class AuthProvider with ChangeNotifier {
       // callback(false, '', '' , errorMessage);
       notifyListeners();
     }
-    print(apiResponse.response!.data["success"]);
+    log(apiResponse.response!.data["success"]);
     return apiResponse.response!.data["success"];
   }
 
   updateSelectedIndex(int index){
     _selectedIndex = index;
     notifyListeners();
+    return false;
 
   }
 

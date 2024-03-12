@@ -1,7 +1,5 @@
 import 'dart:convert';
-/// success : 401
-/// message : "Validation Error"
-/// error : [{"code":"mobile","message":"The mobile field is required."}]
+
 
 ErrorResponse errorResponseFromJson(dynamic str) => ErrorResponse.fromJson(json.decode(str));
 dynamic errorResponseToJson(ErrorResponse data) => json.encode(data.toJson());
