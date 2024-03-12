@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
 class HomeScreen extends StatelessWidget {
+  static const String routeName = "/homeScreen";
   const HomeScreen({super.key});
 
   @override

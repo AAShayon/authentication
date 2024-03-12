@@ -4,7 +4,7 @@ class HMImages {
 
   ///---App logo----just add color on ,where to use
     static const String darkApplogo="assets/logos/s-Splash-dark.png";
-    static const String lightApplogo="assets/logos/s-Splash-light.png";
+    static const String lightApplogo="assets/logos/hrm.png";
   ///---Social logos
   static const String employees="assets/homepage_icons/employee.png";
   static const String payroll="assets/homepage_icons/payroll.png";

@@ -14,7 +14,7 @@ class SignInHeader extends StatelessWidget {
       children: [
         Image(
           height: 150,
-          image: AssetImage(HMImages.lightApplogo),
+          image: AssetImage(HMImages.event),
         ),
         Text(HMTexts.loginTitle,
             style: Theme.of(context).textTheme.headlineMedium),

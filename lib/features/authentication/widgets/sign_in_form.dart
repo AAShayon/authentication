@@ -22,41 +22,44 @@ class _SignInFormState extends State<SignInForm> {
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  String splashText = '''We make things you need arrive on time. You focus on what you need to do''';
+  String splashText =
+      '''We make things you need arrive on time. You focus on what you need to do''';
 
   final formKey = GlobalKey<FormState>();
   bool _obscureText = true;
 
   String forgetResponse = "";
-
-  @override
-  void initState() {
-    super.initState();
-    startAnimation();
-  }
+  //
+  // @override
+  // // void initState() {
+  //   super.initState();
+  //   startAnimation();
+  // }
 
   /// For Login Rider
   void loginUser() async {
     if (formKey.currentState!.validate()) {
-      String email = emailController.text.trim();
-      String password = passwordController.text.trim();
+      String _email = emailController.text.toString();
+      String _password = passwordController.text.toString();
 
-      if (email.isEmpty) {
+      if (_email.isEmpty) {
         showErrorSnackBar('Please enter an email');
-      } else if (password.isEmpty) {
+      } else if (_password.isEmpty) {
         showErrorSnackBar('Please enter a password');
       } else {
         // Use AuthProvider to handle login
         final authProvider = Provider.of<AuthProvider>(context, listen: false);
-        await authProvider.login(context, email, password).then((value) {
-          if (value == true) {
-
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+        await authProvider.login(context, _email, _password  ).then((value) {
+          print(": $value");
+          if (value==true)
+         //
+          {
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomeScreen()));
 
           } else {
-            // Show error message if login is unsuccessful
-            showErrorSnackBar(authProvider.message.toString());
 
+            showErrorSnackBar(authProvider.message.toString());
+            // showErrorSnackBar('Login failed. Please try again.');
           }
         });
       }
@@ -73,21 +76,21 @@ class _SignInFormState extends State<SignInForm> {
     );
   }
 
-
   /// For start animation
-  Future startAnimation() async {
-    await Future.delayed(const Duration(milliseconds: 2500));
-    setState(() {
-      _isAnimated = true;
-      _splashTextVisible = false;
-    });
-  }
+  // Future startAnimation() async {
+  //   await Future.delayed(const Duration(milliseconds: 2500));
+  //   setState(() {
+  //     _isAnimated = true;
+  //     _splashTextVisible = false;
+  //   });
+  // }
 
   String emailError = '';
   String passWordError = '';
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
     return Form(
       key: formKey,
       child: Padding(
@@ -101,12 +104,6 @@ class _SignInFormState extends State<SignInForm> {
                 prefixIcon: Icon(Iconsax.direct_right),
                 labelText: HMTexts.email,
               ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter an email';
-                }
-                return null;
-              },
             ),
 
             const SizedBox(
@@ -116,7 +113,7 @@ class _SignInFormState extends State<SignInForm> {
               controller: passwordController,
               obscureText: _obscureText,
               decoration: InputDecoration(
-                prefixIcon: Icon(Iconsax.direct_right),
+                prefixIcon: const Icon(Iconsax.direct_right),
                 labelText: HMTexts.password,
                 suffixIcon: IconButton(
                   icon: Icon(_obscureText ? Iconsax.eye : Iconsax.eye),
@@ -127,12 +124,6 @@ class _SignInFormState extends State<SignInForm> {
                   },
                 ),
               ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter a password';
-                }
-                return null;
-              },
             ),
             const SizedBox(
               height: HMSizes.spaceBtwInputFields / 2,
@@ -163,6 +154,7 @@ class _SignInFormState extends State<SignInForm> {
             ),
 
             // Sign In Button
+            authProvider.isLoading ==false ?
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -171,7 +163,7 @@ class _SignInFormState extends State<SignInForm> {
                 },
                 child: const Text(HMTexts.signIn),
               ),
-            ),
+            ): Center(child: CircularProgressIndicator()),
 
             const SizedBox(height: HMSizes.spaceBtwItems),
 
@@ -180,7 +172,8 @@ class _SignInFormState extends State<SignInForm> {
               width: double.infinity,
               child: OutlinedButton(
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SignUpScreen()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const SignUpScreen()));
                 },
                 child: const Text(HMTexts.createAccount),
               ),

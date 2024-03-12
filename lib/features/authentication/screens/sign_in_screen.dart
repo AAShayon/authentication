@@ -6,6 +6,7 @@ import 'package:excel_hrm/utils/constants/text_strings.dart';
 import 'package:flutter/material.dart';
 
 class SignInScreen extends StatelessWidget {
+  static const String routeName = "/signingScreen";
   const SignInScreen({super.key});
 
   @override

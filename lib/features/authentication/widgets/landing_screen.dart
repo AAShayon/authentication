@@ -1,9 +1,9 @@
 import 'package:excel_hrm/features/authentication/screens/sign_in_screen.dart';
-import 'package:excel_hrm/features/home/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:excel_hrm/features/authentication/data/page_data/image_title.dart';
 
 class LandingScreen extends StatelessWidget {
+  static const String routeName = "/landingScreen";
   const LandingScreen({Key? key}) : super(key: key);
 
   @override
