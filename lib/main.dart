@@ -1,10 +1,24 @@
+import 'dart:io';
+
+import 'package:excel_hrm/features/authentication/provider/auth_provider.dart';
 import 'package:excel_hrm/features/authentication/widgets/landing_screen.dart';
 import 'package:flutter/material.dart';
+import 'di_container.dart' as di;
+import 'package:provider/provider.dart';
 
-import 'features/home/screens/home_screen.dart';
-
-void main() {
-  runApp(const MyApp());
+void main() async {
+  HttpOverrides.global = MyHttpOverrides();
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => di.sl<AuthProvider>()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -25,3 +39,11 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}

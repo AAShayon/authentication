@@ -9,12 +9,13 @@ class AppConstants {
 
   ///Base url
   //static const String BASE_URL = 'http://192.168.0.244:8000';
+  static const String BASE_URL = 'http://192.168.0.20:8000';
   //static const String BASE_URL = 'https://parcelstar.excelitaiportfolio.com';
-  static const String BASE_URL = 'https://parcelstar.com.bd';
+  // static const String BASE_URL = 'https://parcelstar.com.bd';
 
 
   ///Rider Api
-  static const String LOGIN_URI = '/api/rider/login';
+  static const String LOGIN_URI = '/api/login';
   static const String LOGOUT_URI = '/api/rider/logout';
   static const String PROFILE_URI = '/api/rider/profile';
   static const String FORGET_PASSWORD_URI = '/api/rider/forgotPassword?number=';
