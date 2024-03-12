@@ -19,23 +19,24 @@ class AuthProvider with ChangeNotifier {
 
   dynamic message = '';
 
-  Future<dynamic> login(BuildContext context, dynamic email, dynamic password) async {
+  Future<bool> login(BuildContext context, dynamic email, dynamic password) async {
+    bool _isLogin=false;
     _isLoading = true;
     notifyListeners();
     ApiResponse apiResponse = await authRepo.login(email, password);
     _isLoading = false;
     if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
-
       Map map = apiResponse.response!.data;
       dynamic token = '';
 
       try{
+        _isLogin=true;
         notifyListeners();
-        message = map["message"];
+        message = map["success"];
         if (kDebugMode) {
           log("--------------message----------------------->>>>>$message");
         }
-        token = map["token_info"]["access_token"];
+        token = map["user"]["token"];
         if (kDebugMode) {
           log("--------------token----------------------->>>>>" + token);
         }
@@ -47,26 +48,27 @@ class AuthProvider with ChangeNotifier {
           duration: Duration(seconds: 2),
           backgroundColor: Theme.of(context).primaryColor,
         ));
-        return true;
+        // return true;
 
       }catch(e){
         log(e.toString());
-        return false;
+        _isLogin=false;
       }
 
       // callback(true, token, temporaryToken, message);
       notifyListeners();
     } else {
+      _isLogin=false;
       String errorMessage;
       if (apiResponse.error is String) {
         log(apiResponse.error.toString());
         errorMessage = apiResponse.error.toString();
-
-        ScaffoldMessenger.of(context).removeCurrentSnackBar();
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('${errorMessage}'),
-          backgroundColor: Colors.red,
-        ));
+        //
+        // ScaffoldMessenger.of(context).removeCurrentSnackBar();
+        // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        //   content: Text('${errorMessage}'),
+        //   backgroundColor: Colors.red,
+        // ));
 
       } else {
         ErrorResponse errorResponse = apiResponse.error;
@@ -82,8 +84,8 @@ class AuthProvider with ChangeNotifier {
       // callback(false, '', '' , errorMessage);
       notifyListeners();
     }
-    log(apiResponse.response!.data["success"]);
-    return apiResponse.response!.data["success"];
+    // log(apiResponse.response!.data["success"]);
+    return _isLogin;
   }
 
   updateSelectedIndex(int index){

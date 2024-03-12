@@ -9,7 +9,7 @@ class AppConstants {
 
   ///Base url
   //static const String BASE_URL = 'http://192.168.0.244:8000';
-  static const String BASE_URL = 'http://192.168.0.20:8000';
+  static const String BASE_URL = 'http://192.168.0.107:8000';
   //static const String BASE_URL = 'https://parcelstar.excelitaiportfolio.com';
   // static const String BASE_URL = 'https://parcelstar.com.bd';
 

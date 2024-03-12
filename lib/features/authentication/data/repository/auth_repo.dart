@@ -19,6 +19,7 @@ class AuthRepo {
           "password" : password
         },
       );
+      saveUserToken(response.data["user"]["token"]);
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
